@@ -3,6 +3,7 @@
 .coverage*
 staticfiles
 .envs/*
+.envs/
 !.envs/.local
 
 # Byte-compiled / optimized / DLL files
