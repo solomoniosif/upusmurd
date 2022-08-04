@@ -26,6 +26,7 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'drf_yasg',
     'corsheaders',
+    'djcelery_email',
 ]
 
 LOCAL_APPS = [
