@@ -27,6 +27,7 @@ THIRD_PARTY_APPS = [
     'drf_yasg',
     'corsheaders',
     'djcelery_email',
+    'phonenumber_field'
 ]
 
 LOCAL_APPS = [
@@ -84,8 +85,6 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
 ]
 
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -94,9 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -132,12 +128,21 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 AUTH_USER_MODEL = 'users.User'
 
-CELERY_BROKER_URL = env("CELERY_BROKER")
-CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
-CELERY_TIMEZONE = "Europe/Bucharest"
-CELERY_ACCEPT_CONTENT = ["json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
+CELERY_BROKER_URL = env('CELERY_BROKER')
+CELERY_RESULT_BACKEND = env('CELERY_BACKEND')
+CELERY_TIMEZONE = 'Europe/Bucharest'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "apps.common.exceptions.common_exception_handler",
+    "NON_FIELD_ERRORS_KEY": "error",
+    # "DEFAULT_AUTHENTICATION_CLASSES": (
+    #     "rest_framework_simplejwt.authentication.JWTAuthentication",
+    # ),
+}
+
 
 LOGGING = {
     'version': 1,
